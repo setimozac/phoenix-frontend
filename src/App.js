@@ -1,6 +1,8 @@
+import { useState } from "react"
 import { Link, Outlet } from "react-router-dom"
 
 const App = function() {
+  const [jwtToken, setJwtToken] = useState("dummy token")
   
   return(
     <> 
@@ -20,8 +22,16 @@ const App = function() {
           <nav>
             <div className="list-group">
             <Link to="/" className="list-group-item list-group-item-action">Home</Link>
+            {jwtToken !== "" 
+            ?
+            <>
             <Link to="/services" className="list-group-item list-group-item-action">Services</Link>
             <Link to="/events" className="list-group-item list-group-item-action">Events</Link>
+            </> 
+            : 
+            <>
+            </>
+            }
             </div>        
           </nav>
         </div>
