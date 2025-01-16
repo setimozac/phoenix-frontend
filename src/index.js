@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Services from './components/Services';
 import Events from './components/Events';
 import Calendar from './components/Calendar';
+import Service from './components/Service';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services />
+      },
+      {
+        path: "/services/:id",
+        element: <Service />
       },
       {
         path: "/events",
