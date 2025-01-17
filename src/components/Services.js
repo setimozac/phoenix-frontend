@@ -11,28 +11,20 @@ const Services = () => {
   }
 
   useEffect(() => {
-    let serviceList = [
-      {
-        id: 1,
-        name: "service1",
-        enable: true,
-        minReplica: 0
-      },
-      {
-        id: 2,
-        name: "service2",
-        enable: true,
-        minReplica: 0
-      },
-      {
-        id: 3,
-        name: "service3",
-        enable: false,
-        minReplica: 1
-      },
-    ]
-
-    setServices(serviceList)
+    const headers = new Headers()
+    headers.append("Content-Type", "Application/json")
+    const requestOptions = {
+      Headers: headers,
+      method: "GET"
+    }
+    fetch("/services", requestOptions)
+      .then(data => data.json())
+      .then(data => {
+        setServices(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
   return(
