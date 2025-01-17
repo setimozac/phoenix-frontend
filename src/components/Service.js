@@ -5,6 +5,7 @@ const Service = () => {
   const [service, setService] = useState({})
   let { id } = useParams()
 
+
   useEffect(() => {
     let serviceList = [
       {
