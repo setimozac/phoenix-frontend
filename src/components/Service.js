@@ -30,7 +30,7 @@ const Service = () => {
     
     serviceList.forEach(element => {
       
-      if (element.id == id) {
+      if (element.id === id) {
         setService(element)
         return
       }      

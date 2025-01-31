@@ -54,3 +54,6 @@ const App = function() {
 }
 
 export default App
+
+
+// "proxy": "http://localhost:8080",
