@@ -32,7 +32,7 @@ const Services = () => {
       Headers: headers,
       method: "GET"
     }
-    fetch("/services", requestOptions)
+    fetch(`${process.env.BACKEND_URL}/services`, requestOptions)
       .then(data => data.json())
       .then(data => {
         data.forEach(element => {
@@ -73,8 +73,6 @@ const Services = () => {
     updatedServices.map(item => 
       item.uiEnabled = !item.uiEnabled
       )
-    // console.log(JSON.stringify(updatedServices))
-    // setUpdatedServices([])
     
     const headers = new Headers()
     headers.append("Content-Type", "Application/json")
@@ -84,7 +82,7 @@ const Services = () => {
       body: JSON.stringify(updatedServices)
     }
     // console.log(JSON.stringify(updatedServices))
-    fetch("/services/update", requestOptions)
+    fetch(`${process.env.BACKEND_URL}/services/update`, requestOptions)
     setUpdatedServices([])
     //   .then()
 
