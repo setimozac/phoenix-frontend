@@ -2,8 +2,11 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import Input from "./form/Input"
 import Checkbox from "./form/Checkbox"
+import getConfig from "../Config"
 
 const Services = () => {
+  const [backendUrl, setBackendUrl] = useState("")
+
   const [services, setServices] = useState([])
   const [updatedServices, setUpdatedServices] = useState([])
   const [searchResult, setSearchResult] = useState([])
@@ -26,13 +29,15 @@ const Services = () => {
   }
 
   useEffect(() => {
+    getConfig().then(config => setBackendUrl(config.BACKEND_URL))
+    
     const headers = new Headers()
     headers.append("Content-Type", "Application/json")
     const requestOptions = {
       Headers: headers,
       method: "GET"
     }
-    fetch(`${process.env.BACKEND_URL}/services`, requestOptions)
+    fetch(`${backendUrl}/services`, requestOptions)
       .then(data => data.json())
       .then(data => {
         data.forEach(element => {
@@ -44,7 +49,7 @@ const Services = () => {
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [backendUrl])
 
   const checkboxChange = (id) => {
     setServices((services) => 
@@ -81,8 +86,8 @@ const Services = () => {
       method: "PUT",
       body: JSON.stringify(updatedServices)
     }
-    // console.log(JSON.stringify(updatedServices))
-    fetch(`${process.env.BACKEND_URL}/services/update`, requestOptions)
+    console.log(JSON.stringify(updatedServices))
+    fetch(`${backendUrl}/services/update`, requestOptions)
     setUpdatedServices([])
     //   .then()
 
